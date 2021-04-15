@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "729622629463",
+    "project_id": "fietsenstallingapp",
+    "storage_bucket": "fietsenstallingapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729622629463:android:9d66d60dcc184bd8f0a712",
+        "android_client_info": {
+          "package_name": "com.kaedin.fietsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729622629463-cu7fm0spob688capr40bfpbsk0v2u41v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACpf1ayTmE_WFsCuB6rcyyyR8xw3yOHvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729622629463-cu7fm0spob688capr40bfpbsk0v2u41v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
