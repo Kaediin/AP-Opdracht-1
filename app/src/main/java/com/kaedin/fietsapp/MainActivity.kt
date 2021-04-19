@@ -2,63 +2,46 @@ package com.kaedin.fietsapp
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.ArrayAdapter
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.dialog_fiets_afzetten.*
-import kotlinx.android.synthetic.main.dialog_fiets_afzetten.view.*
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 
 class MainActivity : AppCompatActivity() {
-
-    private val TAG = "MainActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         fiets_afzetten.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            val inflater = LayoutInflater.from(this)
-            val view = inflater.inflate(R.layout.dialog_fiets_afzetten, null)
-            builder.setView(view)
-            val dialog = builder.create()
-
-            ArrayAdapter.createFromResource(
-                this,
-                R.array.merken_array,
-                android.R.layout.simple_spinner_dropdown_item
-            ).also { arrayAdapter ->
-                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                view.spinner_merk.adapter = arrayAdapter
-            }
-
-            dialog.show()
-
-            view.button_afzetten.setOnClickListener {
-                checkPermission()
-                val location = getLocation()
-                val fiets = Fiets()
-                fiets.naam = view.afzetten_naam.text.toString()
-                fiets.merk = view.spinner_merk.selectedItem.toString()
-                fiets.latitude = location?.latitude
-                fiets.longitude = location?.longitude
-                Firebase.insertBicycle(fiets)
-            }
-
+            val alertDialogClient = AlertDialogClient(this, R.layout.dialog_vehicle_dropoff)
+            checkPermission()
+            alertDialogClient.start()
         }
 
-
+        fiets_ophalen.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("documents", Context.MODE_PRIVATE)
+            val ids : List<String> = sharedPreferences.getStringSet("document_ids", HashSet<String>())!!.toList()
+            if (ids.isNotEmpty()){
+                val intent = Intent(this, CollectVehicleActivity::class.java)
+                intent.putStringArrayListExtra("ids", ArrayList(ids))
+                startActivity(intent)
+            } else {
+                Snackbar.make(window.decorView.rootView, "You have not dropped any vehicles off", Snackbar.LENGTH_SHORT).show()
+            }
+        }
     }
 
-    private fun getLocation(): Location? {
+    fun getLocation(): Location? {
         var loc: Location?
         val mLocationManager =
             getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -67,25 +50,13 @@ class MainActivity : AppCompatActivity() {
             if (ActivityCompat.checkSelfPermission(
                     this,
                     Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
+                ) != PackageManager.PERMISSION_GRANTED){
                 return null
             }
             loc = mLocationManager.getLastKnownLocation(provider)
             if (loc != null) return loc
         }
         return null
-
     }
 
     private fun checkPermission() {

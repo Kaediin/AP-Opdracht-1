@@ -10,44 +10,31 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/afzetten_naam"
+            android:id="@+id/dropoff_owner_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Naam"
+            android:hint="Title (ie: Tesla, Bicycle, Motor etc.)"
             android:textAlignment="center"
             android:textColor="@android:color/white" />
 
-        <LinearLayout
-            android:id="@+id/lin_layout_spinner"
+        <EditText
+            android:id="@+id/dropoff_vehicle_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/afzetten_naam"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Fiets merk:"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
-
-            <Spinner
-                android:id="@+id/spinner_merk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
+            android:layout_below="@+id/dropoff_owner_name"
+            android:hint="Vehicle name / Licence plate"
+            android:textAlignment="center"
+            android:textColor="@android:color/white" />
 
         <Button
-            android:id="@+id/button_afzetten"
+            android:id="@+id/button_dropoff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lin_layout_spinner"
+            android:layout_below="@+id/dropoff_vehicle_name"
             android:layout_marginStart="100dp"
             android:layout_marginEnd="100dp"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:text="afzetten"
+            android:text="Dropoff"
             android:textAllCaps="true"
             android:textColor="@android:color/white" />
 

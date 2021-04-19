@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:id="@+id/list_item"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardCornerRadius="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:id="@+id/vehicle_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/vehicle_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@android:color/white"
+                android:textSize="8sp" />
+
+            <TextView
+                android:id="@+id/vehicle_dropoff_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="@string/app_name"
+                android:textColor="@android:color/white"
+                android:textSize="8sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/vehicle_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vehicle_header"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/vehicle_name"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="20dp">
+
+            <com.google.android.gms.maps.MapView xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/vehicle_list_item_map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
