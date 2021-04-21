@@ -44,10 +44,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/details_map_view_card"
-        android:text="NAVIGATE"
         android:layout_marginTop="5dp"
-        android:textColor="@android:color/white"
+        android:backgroundTint="@android:color/holo_green_light"
         android:drawableStart="@android:drawable/ic_dialog_map"
-        android:backgroundTint="@android:color/holo_green_light"/>
+        android:text="NAVIGATE"
+        android:textColor="@android:color/white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/details_navigate">
+
+        <Button
+            android:id="@+id/pickup_vehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/colorPrimary"
+            android:elevation="10dp"
+            android:hapticFeedbackEnabled="true"
+            android:text="Pickup vehicle"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -1,9 +1,13 @@
-package com.kaedin.fietsapp
+package com.kaedin.fietsapp.activity
 
 import android.app.Activity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kaedin.fietsapp.utilities.Firebase
+import com.kaedin.fietsapp.R
+import com.kaedin.fietsapp.models.Vehicle
+import com.kaedin.fietsapp.recyclerview.AdapterVehicles
 
 class CollectVehicleActivity : Activity() {
 

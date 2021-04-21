@@ -1,13 +1,11 @@
-package com.kaedin.fietsapp
+package com.kaedin.fietsapp.recyclerview
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.kaedin.fietsapp.models.Vehicle
 import com.kaedin.spacex.googlemaps.MapViewHolder
 import com.kaedin.spacex.googlemaps.MapViewListItemView
-import kotlinx.android.synthetic.main.list_item.view.*
 
 class AdapterVehicles(private val context: Context, private val vehicle: List<Vehicle>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

@@ -3,6 +3,7 @@
     package="com.kaedin.fietsapp">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -17,7 +18,7 @@
             android:value="AIzaSyAzo1jgzJRUYw9ypsPjmEjBZBk6IvgSQVU" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +28,7 @@
         </activity>
 
         <activity
-            android:name=".CollectVehicleActivity"
+            android:name=".activity.CollectVehicleActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +38,7 @@
         </activity>
 
         <activity
-            android:name=".VehicleDetailsActivity"
+            android:name=".activity.VehicleDetailsActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

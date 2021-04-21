@@ -1,6 +1,5 @@
-package com.kaedin.fietsapp
+package com.kaedin.fietsapp.recyclerview
 
-import android.widget.RelativeLayout
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 

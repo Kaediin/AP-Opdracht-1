@@ -1,4 +1,4 @@
-package com.kaedin.fietsapp
+package com.kaedin.fietsapp.activity
 
 import android.Manifest
 import android.content.Context
@@ -10,8 +10,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.material.snackbar.Snackbar
+import com.kaedin.fietsapp.utilities.AlertDialogClient
+import com.kaedin.fietsapp.R
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
 
@@ -22,8 +23,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setButtonBehaviour()
+        cameFromCollecting()
+    }
+
+    private fun setButtonBehaviour(){
         fiets_afzetten.setOnClickListener {
-            val alertDialogClient = AlertDialogClient(this, R.layout.dialog_vehicle_dropoff)
+            val alertDialogClient =
+                AlertDialogClient(
+                    this,
+                    R.layout.dialog_vehicle_dropoff
+                )
             checkPermission()
             alertDialogClient.start()
         }
@@ -38,6 +48,13 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Snackbar.make(window.decorView.rootView, "You have not dropped any vehicles off", Snackbar.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun cameFromCollecting(){
+        val cameFromCollecting = intent.getBooleanExtra("vehicle_picked_up", false)
+        if (cameFromCollecting){
+            Snackbar.make(window.decorView.rootView, "Vehicle successfully removed!", Snackbar.LENGTH_SHORT).show()
         }
     }
 

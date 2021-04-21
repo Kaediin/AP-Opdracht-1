@@ -15,8 +15,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.kaedin.fietsapp.R
-import com.kaedin.fietsapp.Vehicle
-import com.kaedin.fietsapp.VehicleDetailsActivity
+import com.kaedin.fietsapp.models.Vehicle
+import com.kaedin.fietsapp.activity.VehicleDetailsActivity
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class MapViewListItemView constructor(context: Context?, attrs: AttributeSet? = null) :
@@ -42,7 +42,7 @@ class MapViewListItemView constructor(context: Context?, attrs: AttributeSet? = 
             mMapView!!.onResume()
             mVehicle = vehicle
 
-            mView?.vehicle_id?.text = "ID: ${vehicle.id}"
+            mView?.vehicle_id?.text = vehicle.type.toString()
             mView?.vehicle_name?.text = vehicle.name
             mView?.vehicle_dropoff_date?.text = vehicle.dropoffDate
 
