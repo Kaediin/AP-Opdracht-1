@@ -53,4 +53,5 @@ Alle is bestanden in https://github.com/Kaediin/AP-Opdracht-1/tree/master/app/sr
 
 ## UML Diagram
 ![UML Diagram](https://user-images.githubusercontent.com/42800737/115683504-cefaf400-a356-11eb-94dc-a92ce2c238f7.jpg)
-Voor deze demo heb ik gekozen voor 3 voertuigen
+
+Voor deze demo heb ik gekozen voor 3 voertuigen: Fiets, Auto en motor. In eerste instantie was het alleen voor fietsen dus vandaar de naar "FietsApp" maar gaandeweg heb ik besloten meerdere voertuigen toe te voegen.
