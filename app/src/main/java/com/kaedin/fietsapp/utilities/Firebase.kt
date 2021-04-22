@@ -66,13 +66,21 @@ object Firebase {
         return nSet
     }
 
+    /**
+     * @param collectVehicleActivity: the activity from which this function is called. We ask for this so that we have the context from the view/activity
+     * @param ids set of document ids that are stored locally
+     */
     fun retrieveVehicles(collectVehicleActivity: CollectVehicleActivity, ids: Set<String>?) {
+        // Setup a database connection
         val database = Firebase.firestore
+        // If the user has ids we get the firebase docs, else we throw a nullpointer which is caught later on
         if (ids != null) {
             database.collection(COLLECTION_NAME).get()
                 .addOnSuccessListener { docs ->
+                    // Get documents and filter on which documentId corresponds with the id stores locally
                     val validDocs = docs.filter { it["ID"] in ids }
                     val vehicles = ArrayList<Vehicle>()
+                    // Convert all documents to Vehicle objects and add them to a list
                     validDocs.forEach { doc ->
                         vehicles.add(
                             Gson().fromJson(
@@ -81,10 +89,8 @@ object Firebase {
                             )
                         )
                     }
+                    // Call the function that sets up the view as we have results now
                     collectVehicleActivity.setupRecyclerView(vehicles)
-
-                }.addOnFailureListener { exception ->
-                    println(exception.printStackTrace())
                 }
         } else {
             throw NullPointerException()
