@@ -25,6 +25,9 @@ import java.util.*
 class VehicleDetailsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mVehicle: Vehicle
+    private var mBicycle: Bicycle? = null
+    private var mMotorbike: Motorbike? = null
+    private var mCar: Car? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,18 +48,22 @@ class VehicleDetailsActivity : AppCompatActivity(), OnMapReadyCallback {
             VehicleType.BICYCLE.toString() -> {
                 val bicycle = Gson().fromJson(document["Vehicle_Data"].toString(), Bicycle::class.java)
                 mVehicle = bicycle
+                mBicycle = bicycle
+                call_vehicle_button.text = "RING"
                 bicycle.greet(this, "Hello from you bicycle!")
             }
 
             VehicleType.MOTORBIKE.toString() -> {
                 val motorbike = Gson().fromJson(document["Vehicle_Data"].toString(), Motorbike::class.java)
                 mVehicle = motorbike
+                mMotorbike = motorbike
                 motorbike.greet(this, "Your motor greets you!")
             }
 
             VehicleType.CAR.toString() -> {
                 val car = Gson().fromJson(document["Vehicle_Data"].toString(), Car::class.java)
                 mVehicle = car
+                mCar = car
                 car.greet(this, "The car says hello!")
             }
         }
@@ -79,6 +86,27 @@ class VehicleDetailsActivity : AppCompatActivity(), OnMapReadyCallback {
             startActivity(intent)
         }
 
+        setupCallingButtonBehaviour()
+        setupPickupButtonBehaviour()
+    }
+
+    private fun setupCallingButtonBehaviour(){
+        call_vehicle_button.setOnClickListener {
+            when {
+                mBicycle != null -> {
+                    mBicycle?.ring(this)
+                }
+                mMotorbike != null -> {
+                    mMotorbike?.honk(this)
+                }
+                mCar != null -> {
+                    mCar?.honk(this)
+                }
+            }
+        }
+    }
+
+    private fun setupPickupButtonBehaviour(){
         pickup_vehicle.setOnClickListener {
             val dialog: DialogInterface.OnClickListener =
                 DialogInterface.OnClickListener { _, which ->
@@ -103,8 +131,8 @@ class VehicleDetailsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .setPositiveButton("Yes", dialog)
                 .setNegativeButton("No", dialog).show()
         }
-
     }
+
 
     fun removeIdFromSharedPreferences(id: String) {
         val sharedPreferences = getSharedPreferences("documents", Context.MODE_PRIVATE)

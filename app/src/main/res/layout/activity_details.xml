@@ -51,6 +51,24 @@
         android:textColor="@android:color/white" />
 
     <RelativeLayout
+        android:id="@+id/details_rel_calling"
+        android:layout_below="@+id/details_navigate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/call_vehicle_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HONK HORN"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_campaign"
+            android:backgroundTint="@android:color/holo_blue_dark"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/details_navigate">
