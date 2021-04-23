@@ -7,10 +7,22 @@ import android.os.Vibrator
 import android.widget.Toast
 
 class Car : Vehicle(){
+    /**
+     * @param context is used if showing a Toast message
+     * @see Toast
+     * @param msg is the message shown in the toast
+     * @see Toast.setText
+     *
+     * This function can be overridden if needed
+     */
     override fun greet(context: Context, msg: String) {
         super.greet(context, msg)
     }
-
+    /**
+     * @param context is used to make a Toast message
+     * This function shows a toast message and vibrates the device 2 long times
+     * like a car horn
+     */
     fun honk(context: Context){
         Toast.makeText(context, "HONK!...", Toast.LENGTH_SHORT).show()
         val v = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
